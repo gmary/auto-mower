@@ -77,4 +77,16 @@ public class Lawn {
                 ", height=" + height +
                 '}';
     }
+
+    /**
+     * Check if the position is on the lawn
+     *
+     * @param position position to check
+     * @return true if the position is on the lawn
+     */
+    public boolean isValidPosition(Position position) {
+        final int x = position.getX();
+        final int y = position.getY();
+        return (x >= 0 && x <= width) && (y >= 0 && y <= height);
+    }
 }

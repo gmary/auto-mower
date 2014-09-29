@@ -41,8 +41,8 @@ public class Mower {
             return this;
         }
 
-        String firstOrder = orders.substring(orders.length() - 1);
-        String otherOrders = orders.substring(0, orders.length() - 1);
+        String firstOrder = orders.substring(0, 1);
+        String otherOrders = orders.substring(1, orders.length());
 
         if ("G".equals(firstOrder)) {
             return moveLeft().move(otherOrders);
@@ -76,12 +76,14 @@ public class Mower {
                 newLocation = new Location(new Position(location.getPosition().getX(), location.getPosition().getY() - 1), location.getDirection());
                 break;
         }
-
-        return new Mower(lawn, newLocation);
+        if (isStillOnLawn(newLocation)) {
+            return new Mower(lawn, newLocation);
+        }
+        return this;
     }
 
-    private boolean isStillOnLawn() {
-        return false;
+    private boolean isStillOnLawn(Location location) {
+        return lawn.isValidPosition(location.getPosition());
     }
 
     private Mower moveLeft() {

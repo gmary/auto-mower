@@ -69,4 +69,15 @@ class MowerTest extends Specification {
         new Mower(lawn, new Location(new Position(1, 2), Direction.W)).move("A").location == new Location(new Position(0, 2), Direction.W);
         new Mower(lawn, new Location(new Position(1, 2), Direction.N)).move("AAA").location == new Location(new Position(1, 5), Direction.N);
     }
+
+    def "The mower should stay on the lawn and continue his next moves"() {
+        setup:
+        def lawn = new Lawn(5, 5)
+
+        expect:
+        new Mower(lawn, new Location(new Position(1, 2), Direction.N)).move("AAAA").location == new Location(new Position(1, 5), Direction.N);
+        new Mower(lawn, new Location(new Position(1, 2), Direction.E)).move("AAAAA").location == new Location(new Position(5, 2), Direction.E);
+        new Mower(lawn, new Location(new Position(1, 2), Direction.S)).move("AAA").location == new Location(new Position(1, 0), Direction.S);
+        new Mower(lawn, new Location(new Position(1, 2), Direction.W)).move("AA").location == new Location(new Position(0, 2), Direction.W);
+    }
 }
