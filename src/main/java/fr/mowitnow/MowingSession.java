@@ -25,6 +25,6 @@ public class MowingSession {
      * @return the mower added to the session
      */
     public Mower addMower(Location initialPosition) {
-        return null;
+        return new Mower(lawn, initialPosition);
     }
 }

@@ -3,6 +3,7 @@ package fr.mowitnow
 import spock.lang.Specification
 
 /**
+ * Lawn test
  * Created by guillaume on 25/09/2014.
  */
 class LawnTest extends Specification {

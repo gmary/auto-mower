@@ -7,7 +7,7 @@ import spock.lang.Specification
  */
 class MowingSessionTest extends Specification {
 
-    def "The mowing session should have a lawn"() {
+    def "The mowing session should have a lawn with a specified width and height"() {
         when:
         def mowingSession = new MowingSession(new Lawn(5,5));
 
@@ -26,4 +26,6 @@ class MowingSessionTest extends Specification {
         then:
         mower.location == initMowerLocation;
     }
+
+
 }
