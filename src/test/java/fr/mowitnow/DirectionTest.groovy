@@ -3,6 +3,7 @@ package fr.mowitnow
 import spock.lang.Specification
 
 /**
+ * Direction test
  * Created by guillaume on 29/09/2014.
  */
 class DirectionTest extends Specification {

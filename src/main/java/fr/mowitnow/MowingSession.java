@@ -6,6 +6,7 @@ package fr.mowitnow;
  */
 public class MowingSession {
 
+
     /**
      * Current lawn
      */
@@ -13,18 +14,20 @@ public class MowingSession {
 
     /**
      * Mowing session constructor
-     * @param lawn the lawn to mow
+     *
+     * @param lawnDef the lawn definition to mow
      */
-    public MowingSession(Lawn lawn) {
-        this.lawn = lawn;
+    public MowingSession(String lawnDef) {
+        this.lawn = Lawn.valueOf(lawnDef);
     }
 
     /**
      * Add a new mower to the mowing session with the specified position
-     * @param initialPosition initial position
-     * @return the mower added to the session
+     *
+     * @param initLocation initial location
+     * @return the mower added on the lawn
      */
-    public Mower addMower(Location initialPosition) {
-        return new Mower(lawn, initialPosition);
+    public Mower addMower(String initLocation) {
+        return new Mower(lawn, Location.valueOf(initLocation));
     }
 }

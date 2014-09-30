@@ -1,12 +1,20 @@
 package fr.mowitnow;
 
+import java.util.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
+import static java.util.Objects.hash;
 
 /**
  * Lawn class : the lawn is backed by a rectangle starting from (0,0) to (width,height)
  * Created by guillaume on 25/09/2014.
  */
 public class Lawn {
+
+    /**
+     * Lawn def pattern
+     */
+    private static final String LAWN_PATTERN = "[1-9]?[0-9]* [1-9]?[0-9]*";
 
     /**
      * Lawn's width
@@ -32,6 +40,21 @@ public class Lawn {
     }
 
     /**
+     * Return a new lawn based on the lawn definition : LAWN_PATTERN
+     *
+     * @param lawn the lawn
+     * @return a new lawn initialized with the definition, throw NullPointerException when the lawn is null and IllegalArgumentException when lawn mismatch the pattern
+     */
+    public static Lawn valueOf(String lawn) {
+        Objects.requireNonNull(lawn, "The lawn definition shouldn't be null");
+        if (!lawn.matches(LAWN_PATTERN)) {
+            throw new IllegalArgumentException("The lawn definition should follow this pattern " + LAWN_PATTERN);
+        }
+        final String[] lawnParams = lawn.split(" ");
+        return new Lawn(Integer.parseInt(lawnParams[0]), Integer.parseInt(lawnParams[1]));
+    }
+
+    /**
      * Get the bottom left corner point
      *
      * @return bottom left corner point
@@ -52,30 +75,21 @@ public class Lawn {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
+        if (getClass() != o.getClass()) return false;
 
-        Lawn lawn = (Lawn) o;
-
-        if (height != lawn.height) return false;
-        if (width != lawn.width) return false;
-
-        return true;
+        Lawn p = (Lawn) o;
+        return Objects.equals(width, p.width) && Objects.equals(height, p.height);
     }
 
     @Override
     public int hashCode() {
-        int result = width;
-        result = 31 * result + height;
-        return result;
+        return hash(width, height);
     }
 
     @Override
     public String toString() {
-        return "Lawn{" +
-                "width=" + width +
-                ", height=" + height +
-                '}';
+        return width + " " + height;
     }
 
     /**

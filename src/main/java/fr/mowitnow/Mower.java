@@ -55,10 +55,20 @@ public class Mower {
         }
     }
 
+    /**
+     * Rotate the mower to the right
+     *
+     * @return the mower in a new location
+     */
     private Mower moveRight() {
         return new Mower(lawn, new Location(location.getPosition(), location.getDirection().turnRight()));
     }
 
+    /**
+     * Move forward the mower
+     *
+     * @return the mower in a new location
+     */
     private Mower moveForward() {
         Location newLocation = null;
 
@@ -82,10 +92,19 @@ public class Mower {
         return this;
     }
 
+    /**
+     * Check if the mower is still on the lawn
+     * @param location location
+     * @return true if the mower is still on the lawn
+     */
     private boolean isStillOnLawn(Location location) {
         return lawn.isValidPosition(location.getPosition());
     }
 
+    /**
+     * Rotate the mower to the left
+     * @return the mower in a new location
+     */
     private Mower moveLeft() {
         return new Mower(lawn, new Location(location.getPosition(), location.getDirection().turnLeft()));
     }
